@@ -1,15 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const chatRoutes = require('./routes/chat');
 const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
+
 app.use(cors());
 
-app.use('/chat', chatRoutes);
+const data= require('./data/bot.json');
+app.get('/:content', (req, res,next) => {
+    const content = req.params.content;
+	res.status(200).json(data.content[content]);
+  })
 
 app.listen(port);

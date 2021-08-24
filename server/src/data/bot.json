@@ -1,78 +1,62 @@
 {
 	"content": {
 		"conversation_start": {
-			"text": "Nhấn nút để bắt đầu chat",
+			"text": "Hi! Welcome to Ecommerce Website.",
 			"buttons": [
 				{
-					"text": "Bắt đầu chat",
+					"text": "View list item 📌",
 					"data": {
 						"event": "capture",
-						"next": "conversation_welcome"
+						"next": "list_items"
 					}
 				}
 			]
 		},
-		"conversation_welcome": {
-			"text": "Chào mừng bạn đến với cửa hàng ABC",
-			"buttons": [
-				{
-					"text": "Xem danh sách sản phẩm",
-					"data": {
-						"next": "list_items",
-						"event": "goto"
-					}
-				}
-			]
-		},
+	
 		"list_items": {
-			"text": "Danh sách sản phẩm",
+			"text":"This is list item.Please choose to buy a product you like!!",
 			"buttons": [
 				{
-					"thumbnail": "imgUrl1",
-					"text": "Bàn",
+					"text": "Desk",
 					"data": {
-						"event": "get_item",
-						"value": "1",
-						"next": "show_item_1",
-						"key": "item_select"
+						"key": "item",
+                        "value": "desk",
+                        "next":"item_detail:desk"
 					}
 				},
 				{
-					"thumbnail": "imgUrl2",
-					"text": "Ghế",
+					"text": "Chair",
 					"data": {
-						"event": "get_item",
-						"value": "2",
-						"next": "show_item_2",
-						"key": "item_select"
+						"key": "item",
+                        "value": "chair",
+                        "next":"item_detail:chair"
 					}
 				},
 				{
-					"thumbnail": "imgUrl3",
-					"text": "Nệm",
+					"text": "Pencil",
 					"data": {
-						"event": "get_item",
-						"value": "3",
-						"next": "show_item_3",
-						"key": "item_select"
+						"key": "item",
+                        "value": "pencil",
+                        "next":"item_detail:pencil"
 					}
 				}
 			]
 		},
-		"show_item_1": {
-			"text": "Cái bàn ( 100,000đ )",
-			"sub_text": "Chi tiết sản phẩm",
+		"item_detail:desk": {
+			"text": "Desk For Student (350$) 👀💬",
+			"subtext": "350$",
 			"buttons": [
 				{
-					"text": "Mua sản phẩm",
+					"text": "Buy Item",
 					"data": {
-						"event": "capture",
-						"value": "itemId",
-						"next": "buy_item"
+						"key": "payment",
+                        "value": "desk",
+                        "next":"payment"
+
 					}
 				},
 				{
-					"text": "Xem danh sách sản phẩm",
+					"text": "Back to List",
 					"data": {
 						"event": "goto",
 						"next": "list_items"
@@ -80,20 +64,21 @@
 				}
 			]
 		},
-		"show_item_2": {
-			"text": "Cái ghế (200,000đ)",
-			"sub_text": "Chi tiết sản phẩm",
+		"item_detail:chair": {
+			"text": "Chair For Student (300$)",
+			"sub_text": "300$",
 			"buttons": [
 				{
-					"text": "Mua sản phẩm",
+					"text": "Buy Item",
 					"data": {
-						"event": "capture",
-						"value": "itemId",
-						"next": "buy_item"
+						"key": "payment",
+                        "value": "desk",
+                        "next":"payment"
+
 					}
 				},
 				{
-					"text": "Xem danh sách sản phẩm",
+					"text": "Back to List",
 					"data": {
 						"event": "goto",
 						"next": "list_items"
@@ -101,20 +86,20 @@
 				}
 			]
 		},
-		"show_item_3": {
-			"text": "Cái nệm ( 300,000đ )",
-			"sub_text": "Chi tiết sản phẩm",
+		"item_detail:pencil": {
+			"text": "Pencil For Student(150$)",
+			"sub_text": "150$",
 			"buttons": [
 				{
-					"text": "Mua sản phẩm",
+					"text": "Buy Item",
 					"data": {
-						"event": "capture",
-						"value": "itemId",
-						"next": "buy_item"
+						"key": "payment",
+                        "value": "desk",
+                        "next":"payment"
 					}
 				},
 				{
-					"text": "Xem danh sách sản phẩm",
+					"text": "Back to List",
 					"data": {
 						"event": "goto",
 						"next": "list_items"
@@ -122,28 +107,38 @@
 				}
 			]
 		},
-		"buy_item": {
-			"text": "Mua hàng thành công",
+		"payment": {
+			"text": "Payment",
 			"buttons": [
 				{
-					"text": "Xem sản phẩm khác",
+					"text": "Accpet Payment",
 					"data": {
 						"event": "goto",
-						"next": "list_items"
+						"next": "payment:success"
 					}
 				},
 				{
-					"text": "Kết thúc cuộc trò chuyện",
+					"text": "Deny Payment",
 					"data": {
 						"event": "goto",
-						"next": "conversation_end"
+						"next": "payment:failed"
 					}
 				}
 			]
 		},
-		"conversation_end": {
-			"text": "Xin chào và hẹn gặp lại quý khách",
-			"buttons": []
+		
+		"payment:success": {
+			"text": 
+				"Congratulations on your successful payment !!!",
+            "buttons":[],
+			"is_default": true
+		},
+
+        "payment:failed": {
+			"text": 
+				"Sorry,payment failed. Please check again !!!",
+            "buttons":[],
+			"is_default": true
 		}
-	}
+    }
 }
